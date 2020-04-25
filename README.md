@@ -1,1 +1,1 @@
-**KSS Console Component** - component
+**KSS Console** - console program for KSS https://github.com/porfirovskiy/KnowledgeStorageSystem
