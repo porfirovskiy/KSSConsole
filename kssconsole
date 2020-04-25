@@ -5,8 +5,11 @@
  * Time: 0:33
  */
 
+declare(strict_types=1);
+
 use KSSConsole\App;
 
 require_once 'vendor/autoload.php';
 
-$app = new App();
+$app = new App($argv);
+$app->run();
