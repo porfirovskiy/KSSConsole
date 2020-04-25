@@ -9,7 +9,18 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "repositories": {
+        "dev-package": {
+            "type": "path",
+            "url": "~/OWN_PROJECTS/KnowledgeStorageSystem",
+            "options": {
+                "symlink": true
+            }
+        }
+    },
+    "require": {
+        "porfirovskiy/kss": "dev-master"
+    },
     "autoload": {
         "psr-4": { "KSSConsole\\": "src"}
     }

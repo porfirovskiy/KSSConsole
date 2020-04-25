@@ -1,0 +1,45 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "a1ba2b830c86f5d388898753f10c3fef",
+    "packages": [
+        {
+            "name": "porfirovskiy/kss",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "/home/ypilipenko/OWN_PROJECTS/KnowledgeStorageSystem",
+                "reference": "3733fad3eec2185d43bc392f2d225eecedcc739e"
+            },
+            "type": "project",
+            "autoload": {
+                "psr-4": {
+                    "KSS\\": "src"
+                }
+            },
+            "authors": [
+                {
+                    "name": "porfirovskiy",
+                    "email": "porfirovskiy@gmail.com"
+                }
+            ],
+            "description": "kss project.",
+            "transport-options": {
+                "symlink": true
+            }
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "porfirovskiy/kss": 20
+    },
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}
