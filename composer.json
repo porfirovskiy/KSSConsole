@@ -1,0 +1,16 @@
+{
+    "name": "porfirovskiy/kss-console",
+    "description": "console program(client) for KSS",
+    "type": "project",
+    "authors": [
+        {
+            "name": "porfirovskiy",
+            "email": "porfirovskiy@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": { "KSSConsole\\": "src"}
+    }
+}

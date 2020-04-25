@@ -1,0 +1,12 @@
+#!/usr/bin/env php
+<?php
+/**
+ * Date: 26.04.20
+ * Time: 0:33
+ */
+
+use KSSConsole\App;
+
+require_once 'vendor/autoload.php';
+
+$app = new App();
