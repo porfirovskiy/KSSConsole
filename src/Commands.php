@@ -31,37 +31,67 @@ class Commands
     private function getList(): array
     {
         return [
-            'create/project' => ['name'],
-            'add/part' => ['name', 'parent_id', 'project_id']
+            'create/project' => [
+                'method' => 'createProject',
+                'params' => ['name']
+            ],
+            'add/part' => [
+                'method' => 'createPart',
+                'params' => ['name', 'project_id', 'parent_id']
+            ]
         ];
     }
 
     /**
      * @param string $command
+     * @param array $params
      * @return bool
      */
-    public function isValidCommand(string $command): bool
+    public function isValidCommand(string $command, array $params): bool
     {
         $list = $this->getList();
-        if (in_array($command, $list)) {
-            return true;
-        } else {
-            return false;
+        if (isset($list[$command])) {
+            if (count($params) === count($list[$command]['params'])) {
+                return true;
+            }
         }
+
+        return false;
     }
 
-    public function execute()
+    /**
+     * @param string $command
+     * @return string
+     */
+    private function getMethod(string $command): string
     {
-        /**
-         * Нужен меппинг команд на вызываемые методы ксс движка
-         * Посмотреть как устроен роутинг в фреймворке, ибо там тоже на каждый запрос
-         * создаются классы и вызываются нужные методы, у меня проще - класс один, значит меппенг только методов!
-         */
+        $list = $this->getList();
 
-        $this->kss->createProject(['name' => 'Translate.com']);
+        return $list[$command]['method'];
+    }
 
-        $this->kss->createPart(['name' => 'Human Translations', 'project_id' => 18, 'parent_id' => 0]);
+    /**
+     * @param string $command
+     * @return array
+     */
+    private function getMethodParams(string $command): array
+    {
+        $list = $this->getList();
 
-        $this->kss->createPartContent(['content' => 'Test text.', 'part_id' => 13]);
+        return $list[$command]['params'];
+    }
+
+    /**
+     * @param string $command
+     * @param array $params
+     * @return mixed
+     */
+    public function execute(string $command, array $params)
+    {
+        $method = $this->getMethod($command);
+        $methodParams = $this->getMethodParams($command);
+        $readyParams = [array_combine($methodParams, $params)];
+
+        return call_user_func_array([$this->kss, $method], $readyParams);
     }
 }

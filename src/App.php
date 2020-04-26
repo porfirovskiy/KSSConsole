@@ -12,6 +12,8 @@ namespace KSSConsole;
  */
 class App
 {
+    const COMMAND_ERROR_VALIDATION_MASSAGE = ": command not valid" .  PHP_EOL;
+
     private $arguments = [];
     private $commands;
 
@@ -24,7 +26,6 @@ class App
     {
         $this->arguments = $arguments;
         $this->commands = $commands;
-        echo "Hello!" . PHP_EOL;
     }
 
     /**
@@ -32,12 +33,15 @@ class App
      */
     public function run(): void
     {
+        $this->print("Hello!");
+
         $result = $this->parseArguments();
 
-        if ($this->commands->isValidCommand($result['command'])) {
-            echo $result['command'] .  PHP_EOL;
+        if ($this->commands->isValidCommand($result['command'], $result['params'])) {
+            $commandResult = $this->commands->execute($result['command'], $result['params']);
+            var_dump($commandResult);
         } else {
-            echo $result['command'] . ": command not found" .  PHP_EOL;
+            $this->print($result['command'] . self::COMMAND_ERROR_VALIDATION_MASSAGE);
         }
     }
 
@@ -48,7 +52,13 @@ class App
     {
         return [
             'script_name' => $this->arguments[0],
-            'command' => $this->arguments[1]
+            'command' => $this->arguments[1],
+            'params' => array_slice($this->arguments, 2)
         ];
+    }
+
+    private function print(string $message): void
+    {
+        echo $message . PHP_EOL;
     }
 }
