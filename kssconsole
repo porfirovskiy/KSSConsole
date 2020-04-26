@@ -11,5 +11,8 @@ use KSSConsole\App;
 
 require_once 'vendor/autoload.php';
 
-$app = new App($argv);
+$kss = new \KSS\KSSEngine('localhost', 3306, 'kss', 'root', '123');
+$commands = new \KSSConsole\Commands($kss);
+
+$app = new App($argv, $commands);
 $app->run();

@@ -14,6 +14,17 @@ use KSS\KSSEngine;
  */
 class Commands
 {
+    private $kss;
+
+    /**
+     * Commands constructor.
+     * @param KSSEngine $kss
+     */
+    public function __construct(KSSEngine $kss)
+    {
+        $this->kss = $kss;
+    }
+
     /**
      * @return array
      */
@@ -46,12 +57,11 @@ class Commands
          * Посмотреть как устроен роутинг в фреймворке, ибо там тоже на каждый запрос
          * создаются классы и вызываются нужные методы, у меня проще - класс один, значит меппенг только методов!
          */
-        $kss = new KSSEngine('localhost', 3306, 'kss', 'root', '123');
 
-        $kss->createProject(['name' => 'Translate.com']);
+        $this->kss->createProject(['name' => 'Translate.com']);
 
-        $kss->createPart(['name' => 'Human Translations', 'project_id' => 18, 'parent_id' => 0]);
+        $this->kss->createPart(['name' => 'Human Translations', 'project_id' => 18, 'parent_id' => 0]);
 
-        $kss->createPartContent(['content' => 'Test text.', 'part_id' => 13]);
+        $this->kss->createPartContent(['content' => 'Test text.', 'part_id' => 13]);
     }
 }

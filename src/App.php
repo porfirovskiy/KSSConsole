@@ -6,8 +6,6 @@
 
 namespace KSSConsole;
 
-use KSSConsole\Commands;
-
 /**
  * Class App
  * @package KSSConsole
@@ -20,11 +18,12 @@ class App
     /**
      * App constructor.
      * @param array $arguments
+     * @param Commands $commands
      */
-    public function __construct(array $arguments)
+    public function __construct(array $arguments, Commands $commands)
     {
         $this->arguments = $arguments;
-        $this->commands = new Commands();
+        $this->commands = $commands;
         echo "Hello!" . PHP_EOL;
     }
 
