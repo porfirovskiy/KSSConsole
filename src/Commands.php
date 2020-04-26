@@ -31,13 +31,17 @@ class Commands
     private function getList(): array
     {
         return [
-            'create/project' => [
+            'project/create' => [
                 'method' => 'createProject',
                 'params' => ['name']
             ],
-            'add/part' => [
+            'part/add' => [
                 'method' => 'createPart',
                 'params' => ['name', 'project_id', 'parent_id']
+            ],
+            'part/delete' => [
+                'method' => 'deletePart',
+                'params' => ['id']
             ]
         ];
     }

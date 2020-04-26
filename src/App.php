@@ -13,19 +13,22 @@ namespace KSSConsole;
 class App
 {
     const COMMAND_ERROR_VALIDATION_MASSAGE = ": command not valid" .  PHP_EOL;
+    const HELP_COMMAND = "help";
 
     private $arguments = [];
     private $commands;
+    private $help;
 
     /**
      * App constructor.
      * @param array $arguments
      * @param Commands $commands
      */
-    public function __construct(array $arguments, Commands $commands)
+    public function __construct(array $arguments, Commands $commands, Help $help)
     {
         $this->arguments = $arguments;
         $this->commands = $commands;
+        $this->help = $help;
     }
 
     /**
@@ -33,15 +36,17 @@ class App
      */
     public function run(): void
     {
-        $this->print("Hello!");
-
         $result = $this->parseArguments();
 
-        if ($this->commands->isValidCommand($result['command'], $result['params'])) {
-            $commandResult = $this->commands->execute($result['command'], $result['params']);
-            var_dump($commandResult);
+        if ($result['command'] == self::HELP_COMMAND) {
+            $this->help->printHelp();
         } else {
-            $this->print($result['command'] . self::COMMAND_ERROR_VALIDATION_MASSAGE);
+            if ($this->commands->isValidCommand($result['command'], $result['params'])) {
+                $commandResult = $this->commands->execute($result['command'], $result['params']);
+                var_dump($commandResult);
+            } else {
+                $this->print($result['command'] . self::COMMAND_ERROR_VALIDATION_MASSAGE);
+            }
         }
     }
 
