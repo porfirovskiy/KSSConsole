@@ -12,7 +12,7 @@ class Help
     /**
      * @return array
      */
-    private function getList(): array
+    private function getCommandsList(): array
     {
         return [
             "project/create" => [
@@ -36,9 +36,9 @@ class Help
     /**
      *
      */
-    public function printHelp()
+    public function print()
     {
-        $helpList = $this->getList();
+        $helpList = $this->getCommandsList();
 
         echo "-- HELP, LIST OF COMMANDS -- ". PHP_EOL . PHP_EOL;
 

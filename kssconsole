@@ -14,6 +14,7 @@ require_once 'vendor/autoload.php';
 $kss = new \KSS\KSSEngine('localhost', 3306, 'kss', 'root', '123');
 $commands = new \KSSConsole\Commands($kss);
 $help = new \KSSConsole\Help();
+$visualization = new \KSSConsole\Visualization();
 
-$app = new App($argv, $commands, $help);
+$app = new App($argv, $commands, $help, $visualization);
 $app->run();

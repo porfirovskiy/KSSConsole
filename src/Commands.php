@@ -33,7 +33,12 @@ class Commands
         return [
             'project/create' => [
                 'method' => 'createProject',
-                'params' => ['name']
+                'params' => ['name'],
+                'showResult' => true
+            ],
+            'project/tree' => [
+                'method' => 'getAllParts',
+                'params' => ['project_id']
             ],
             'part/add' => [
                 'method' => 'createPart',
